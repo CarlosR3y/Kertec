@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Kertec</string>
+    <string name="title1">GENERA DOCUMENTOS</string>
+    <string name="title2">GUARDALOS LOCALMENTE</string>
+    <string name="title3">CONFIGURA TU PERFIL</string>
+    <string name="desc1">Genera documentos en formato PDF de forma rapida y segura.</string>
+    <string name="desc2">Tus ordenes se guardaran localmente</string>
+    <string name="desc3">Una cuenta personalizada para tus actividades</string>
+    <string name="btnEmpzar">EMPEZAR</string>
+    <string name="tab1">Ordenes</string>
+    <string name="tab2">Lecturas</string>
+    <string name="loginTitle">Iniciar sesion</string>
+    <string name="hintEmail">Correo Electronico</string>
+    <string name="hintPassword">Contraseña</string>
+    <string name="btnInicio">INICIAR SESION</string>
+    <string name="btnCerrar">CREAR CUENTA</string>
+    <string name="btnPyp">Politica de privacidad</string>
+</resources>

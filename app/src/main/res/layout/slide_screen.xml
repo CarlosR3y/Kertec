@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/neebo_black"
+        android:gravity="center"
+        android:text="@string/title1"
+        android:textAlignment="center"
+        android:textColor="@color/md_theme_light_primary"
+        android:layout_marginBottom="40dp"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/before"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_before" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/icon_scroll" />
+
+        <ImageView
+            android:id="@+id/next"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_next" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/sora_regular"
+        android:gravity="center"
+        android:text="@string/desc1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/md_theme_light_onPrimaryContainer"
+        tools:ignore="DuplicateIds" />
+
+    <Button
+        android:id="@+id/btnEmpezar"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        app:backgroundTint="@color/md_theme_light_primary"
+        android:text="@string/btnEmpzar"
+        android:textColor="@color/md_theme_light_onPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ind1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:srcCompat="@drawable/selected" />
+
+        <ImageView
+            android:id="@+id/ind2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/selected"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/ind3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/selected" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
