@@ -23,6 +23,7 @@ public class SlideActivity extends AppCompatActivity {
             Intent intent = new Intent(SlideActivity.this,MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
         }
         else {
             SharedPreferences.Editor editor=getSharedPreferences("slide",MODE_PRIVATE).edit();

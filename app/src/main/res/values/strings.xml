@@ -23,8 +23,5 @@
     <string name="hintNombre">Nombre</string>
     <string name="hintTelefono">Telefono</string>
     <string name="hintEquipo">Equipo</string>
-    <string name="hintMarca">Marca</string>
-    <string name="hintModelo">Modelo</string>
-    <string name="hintSerie">Serie</string>
-    <string name="btnFinalizar">Finalizar</string>
+    <string name="fab_content_desc">nueva</string>
 </resources>
