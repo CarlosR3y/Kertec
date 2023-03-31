@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, SlideActivity.class);
                 startActivity(intent);
-                finish(); // cerrar esta actividad
+                // cerrar esta actividad
             }
         }, SPLASH_TIME_OUT);
 
