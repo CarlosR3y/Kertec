@@ -15,4 +15,12 @@
     <string name="btnInicio">INICIAR SESION</string>
     <string name="btnCerrar">CREAR CUENTA</string>
     <string name="btnPyp">Politica de privacidad</string>
+    <string name="ordenTitle">ORDEN DE SERVICIO</string>
+    <string name="hintCliente">Cliente</string>
+    <string name="hintFecha">Fecha</string>
+    <string name="hintDepartamento">Departamento</string>
+    <string name="hintDireccion">Direccion</string>
+    <string name="hintNombre">Nombre</string>
+    <string name="hintTelefono">Telefono</string>
+    <string name="hintEquipo">Equipo</string>
 </resources>
