@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
 
-        fab.setOnClickListener{
+        btn_fab.setOnClickListener{
             val intent = Intent(this, OrdenActivity::class.java)
             startActivity(intent)
         }
