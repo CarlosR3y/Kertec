@@ -24,4 +24,16 @@
     <string name="hintTelefono">Telefono</string>
     <string name="hintEquipo">Equipo</string>
     <string name="fab_content_desc">nueva</string>
+
+<!--   Lecturas  -->
+    <string name="lecturaTitulo">Toma de lectura</string>
+    <string name="lecturaUbicacion">Ubicacion</string>
+    <string name="lecturaCliente">Cliente</string>
+    <string name="lecturaSerie">Serie</string>
+    <string name="lecturaModelo">Modelo</string>
+    <string name="lecturaMarca">Marca</string>
+    <string name="lecturaInicial">Lectura Inicial</string>
+    <string name="lecturaActual">Lectura Actual</string>
+    <string name="lecturaCopias">Procesadas</string>
+    <string name="total">Total</string>
 </resources>
