@@ -20,7 +20,7 @@ public class SlideActivity extends AppCompatActivity {
         adapter=new SlideViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
         if (isOpenAlread()){
-            Intent intent = new Intent(SlideActivity.this,MainActivity.class);
+            Intent intent = new Intent(SlideActivity.this,LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

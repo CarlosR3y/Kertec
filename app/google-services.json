@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1090828868008",
+    "project_id": "kertec-dc667",
+    "storage_bucket": "kertec-dc667.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090828868008:android:f6641da656a12bf2dd259d",
+        "android_client_info": {
+          "package_name": "com.example.kertec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090828868008-gttteve0b1m7uqfq5mf12m04b4rm229i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvPzGCbMOYSW4757iyTDFor_DdcE6HPAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090828868008-gttteve0b1m7uqfq5mf12m04b4rm229i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
