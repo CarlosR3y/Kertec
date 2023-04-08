@@ -34,6 +34,7 @@
     <string name="lecturaMarca">Marca</string>
     <string name="lecturaInicial">Lectura Inicial</string>
     <string name="lecturaActual">Lectura Actual</string>
-    <string name="lecturaCopias">Procesadas</string>
+    <string name="lecturaCopias">Procesadas: </string>
+    <string name="resultado">0</string>
     <string name="total">Total</string>
 </resources>

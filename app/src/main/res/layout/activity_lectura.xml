@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView"
+    android:id="@+id/scrollViewLectura"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -152,7 +152,8 @@
             </TextView>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:id="@+id/validateEditInicial"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
@@ -187,7 +188,8 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:id="@+id/validateEditActual"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="20dp"
@@ -213,32 +215,36 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textViewTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lecturaCopias"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="20sp"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="50dp"
+                android:fontFamily="@font/neebo_black"
                 >
             </TextView>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textViewProcesadas"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
-                android:hint="@string/total"
-                app:endIconMode="clear_text">
+                android:text="@string/resultado"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/neebo_black"
+                >
+            </TextView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fieldLecturaProcesadas"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
@@ -253,7 +259,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnFinalizar"
+                android:id="@+id/btnLectura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.Material3.Button.TextButton"
