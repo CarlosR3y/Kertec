@@ -11,10 +11,14 @@
     <string name="tab2">Lecturas</string>
     <string name="loginTitle">Iniciar sesion</string>
     <string name="hintEmail">Correo Electronico</string>
-    <string name="hintPassword">Contraseña</string>
+    <string name="hintPassword">Contraseña</string>}
+    <string name="registro">Registro</string>
+    <string name="cuenta">CREAR CUENTA</string>
+
     <string name="btnInicio">INICIAR SESION</string>
     <string name="btnCerrar">CREAR CUENTA</string>
     <string name="btnPyp">Politica de privacidad</string>
+    <string name="btnPassword">¿Olvidaste tu contraseña?</string>
     <string name="ordenTitle">Orden de servicio</string>
     <string name="hintCliente">Cliente</string>
     <string name="hintFecha">Fecha</string>
@@ -25,7 +29,7 @@
     <string name="hintEquipo">Equipo</string>
     <string name="fab_content_desc">nueva</string>
 
-<!--   Lecturas  -->
+    <!--   Lecturas  -->
     <string name="lecturaTitulo">Toma de lectura</string>
     <string name="lecturaUbicacion">Ubicacion</string>
     <string name="lecturaCliente">Cliente</string>
@@ -37,4 +41,9 @@
     <string name="lecturaCopias">Procesadas: </string>
     <string name="resultado">0</string>
     <string name="total">Total</string>
+
+    // Errores
+    <string name="error_email">Escribe un correo valido</string>
+    <string name="error_password">Escrribe una contraseña mayor a 6 digitos</string>
+    <string name="error_name">Escribe un nombre valido</string>
 </resources>

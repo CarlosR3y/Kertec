@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_dark_pattern"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
 
     <ImageView
@@ -35,7 +36,6 @@
             android:textSize="40sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fieldEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -46,6 +46,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fieldEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -54,7 +55,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fieldPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -65,6 +65,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fieldPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -97,6 +98,19 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             />
+        <Button
+            style="@style/Widget.Material3.Button.TextButton"
+            android:id="@+id/btnPassword"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnPassword"
+            android:textColor="@color/seed"
+            android:textSize="15sp"
+            />
+
+
 
         <Button
             style="@style/Widget.Material3.Button.TextButton"
