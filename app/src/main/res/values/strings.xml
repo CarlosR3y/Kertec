@@ -46,4 +46,9 @@
     <string name="error_email">Escribe un correo valido</string>
     <string name="error_password">Escrribe una contraseña mayor a 6 digitos</string>
     <string name="error_name">Escribe un nombre valido</string>
+    <string name="menu">Cerrar sesion</string>
+    <string name="content_description_menu">cerrar sesion</string>
+
+    //Start menu
+    <string name="titleBar">Bienvenido</string>
 </resources>

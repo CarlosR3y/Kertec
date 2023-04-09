@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +44,9 @@ public class LoginActivity extends AppCompatActivity {
 
     LinearLayout loginLayout;
 
-    String text = "";
+    String correo = "";
+
+    ProgressDialog mDialog;
 
 
     @SuppressLint("MissingInflatedId")
@@ -64,6 +67,9 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
+
+        mDialog = new ProgressDialog(this);
+
 
         if(user != null){
             irAhome();
@@ -104,19 +110,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        btnPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                View view1 = LayoutInflater.from(LoginActivity.this).inflate(R.layout.dialog_layout, null);
-//                TextInputEditText editTextPassword = view1.findViewById(R.id.editTextPassword);
-//                AlertDialog alertDialog = new MaterialAlertDialogBuilder(LoginActivity.this).setTitle("Escribe tu correo").setView(view1).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                })
-//            }
-//        });
+        btnPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view1 = LayoutInflater.from(LoginActivity.this).inflate(R.layout.dialog_layout, null);
+                TextInputEditText editTextPassword = view1.findViewById(R.id.editTextPassword);
+                AlertDialog alertDialog = new MaterialAlertDialogBuilder(LoginActivity.this).setTitle("Escribe tu correo").setView(view1).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        correo = editTextPassword.getText().toString();
+                            if (!correo.isEmpty()){
+                                mDialog.setMessage("Espere un momento...");
+                                mDialog.setCanceledOnTouchOutside(false);
+                                mDialog.show();
+                                resetPassword();
+                                dialog.dismiss();
+                            } else {
+                                Snackbar.make(loginLayout, "Debe ingresar un correo", Snackbar.LENGTH_LONG).show();
+                            }
+                    }
+                }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+            }
+        });
     }
 
     private void irAhome() {
@@ -124,6 +144,21 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("mail",fieldEmail.getText().toString());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    private void resetPassword() {
+        firebaseAuth.setLanguageCode("es");
+        firebaseAuth.sendPasswordResetEmail(correo).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Snackbar.make(loginLayout, "Se ha enviado el correo de recuperacion", Snackbar.LENGTH_LONG).show();
+                }else {
+                    Snackbar.make(loginLayout, "No se encontro el correo", Snackbar.LENGTH_LONG).show();
+                }
+                mDialog.dismiss();
+            }
+        });
     }
 
     private void Error(String error){

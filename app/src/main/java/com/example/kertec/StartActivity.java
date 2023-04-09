@@ -1,10 +1,13 @@
 package com.example.kertec;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -12,12 +15,18 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class StartActivity extends AppCompatActivity {
 
     FloatingActionButton btn_fab;
     TabLayout tabLayout;
+
+    Toolbar topAppBar;
+
+    CoordinatorLayout startLayout;
 
     int[] colorIntArray = {R.color.md_theme_light_primaryContainer, R.color.md_theme_light_primaryContainer};
     int[] iconIntArray = {R.drawable.ic_add,R.drawable.ic_print};
@@ -30,6 +39,8 @@ public class StartActivity extends AppCompatActivity {
 
         btn_fab = findViewById(R.id.btn_fab);
         tabLayout = findViewById(R.id.tabLayout);
+        topAppBar = findViewById(R.id.topAppBar);
+        startLayout = findViewById(R.id.startLayout);
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -53,7 +64,19 @@ public class StartActivity extends AppCompatActivity {
         });
 
 
+        topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.menu:
+                        FirebaseAuth.getInstance().signOut();
+                        Snackbar.make(startLayout, "Usuario creado con exito", Snackbar.LENGTH_LONG).show();
+                        goLogin();
 
+                }
+                return false;
+            }
+        });
 
 
 
@@ -76,6 +99,12 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void goLogin() {
+        Intent intent = new Intent(StartActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 
