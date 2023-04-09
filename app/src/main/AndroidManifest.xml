@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kertec">
         <activity
+            android:name=".ResetActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity

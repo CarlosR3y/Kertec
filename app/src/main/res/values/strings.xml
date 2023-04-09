@@ -51,4 +51,6 @@
 
     //Start menu
     <string name="titleBar">Bienvenido</string>
+    <string name="reset">Reestablecer contraseña</string>
+    <string name="enviar">ENVIAR</string>
 </resources>

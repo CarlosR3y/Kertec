@@ -21,6 +21,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -46,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
     String correo = "";
 
-    ProgressDialog mDialog;
-
+//    ProgressDialog mDialog;
+    BottomSheetDialog bDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        mDialog = new ProgressDialog(this);
+//        mDialog = new ProgressDialog(this);
 
 
         if(user != null){
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.fieldEmail, Patterns.EMAIL_ADDRESS, R.string.error_email);
         awesomeValidation.addValidation(this, R.id.inputPassword, "[a-zA-Z\\s]+", R.string.error_email);
+        awesomeValidation.addValidation(this, R.id.editTextPassword, Patterns.EMAIL_ADDRESS, R.string.error_email);
 
         btnSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,28 +115,8 @@ public class LoginActivity extends AppCompatActivity {
         btnPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view1 = LayoutInflater.from(LoginActivity.this).inflate(R.layout.dialog_layout, null);
-                TextInputEditText editTextPassword = view1.findViewById(R.id.editTextPassword);
-                AlertDialog alertDialog = new MaterialAlertDialogBuilder(LoginActivity.this).setTitle("Escribe tu correo").setView(view1).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        correo = editTextPassword.getText().toString();
-                            if (!correo.isEmpty()){
-                                mDialog.setMessage("Espere un momento...");
-                                mDialog.setCanceledOnTouchOutside(false);
-                                mDialog.show();
-                                resetPassword();
-                                dialog.dismiss();
-                            } else {
-                                Snackbar.make(loginLayout, "Debe ingresar un correo", Snackbar.LENGTH_LONG).show();
-                            }
-                    }
-                }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
+                Intent intent = new Intent(LoginActivity.this, ResetActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -146,20 +128,20 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void resetPassword() {
-        firebaseAuth.setLanguageCode("es");
-        firebaseAuth.sendPasswordResetEmail(correo).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Snackbar.make(loginLayout, "Se ha enviado el correo de recuperacion", Snackbar.LENGTH_LONG).show();
-                }else {
-                    Snackbar.make(loginLayout, "No se encontro el correo", Snackbar.LENGTH_LONG).show();
-                }
-                mDialog.dismiss();
-            }
-        });
-    }
+//    private void resetPassword() {
+//        firebaseAuth.setLanguageCode("es");
+//        firebaseAuth.sendPasswordResetEmail(correo).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()){
+//                    Snackbar.make(loginLayout, "Se ha enviado el correo de recuperacion", Snackbar.LENGTH_LONG).show();
+//                }else {
+//                    Snackbar.make(loginLayout, "No se encontro el correo", Snackbar.LENGTH_LONG).show();
+//                }
+////                mDialog.dismiss();
+//            }
+//        });
+//    }
 
     private void Error(String error){
 
