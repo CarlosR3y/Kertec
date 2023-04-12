@@ -13,11 +13,18 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.example.kertec.OrdenActivity;
+import com.example.kertec.DataHolder;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -28,8 +35,19 @@ public class StartActivity extends AppCompatActivity {
 
     CoordinatorLayout startLayout;
 
+    ListView listHistorial1;
+    ListView listHistorial2;
+
+    List listOrden;
+    List listLectura;
+
     int[] colorIntArray = {R.color.md_theme_light_primaryContainer, R.color.md_theme_light_primaryContainer};
     int[] iconIntArray = {R.drawable.ic_add,R.drawable.ic_print};
+
+    int positionTab;
+
+    ArrayAdapter<String> arrayAdapterOrden;
+    ArrayAdapter<String> arrayAdapterLectura;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,15 +59,44 @@ public class StartActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         topAppBar = findViewById(R.id.topAppBar);
         startLayout = findViewById(R.id.startLayout);
+        listHistorial1 = findViewById(R.id.listHistorial1);
+        listHistorial2 = findViewById(R.id.listHistorial2);
 
+        ArrayList<String> dataForTab1 = getDataForTab1();
+        ArrayList<String> dataForTab2 = getDataForTab2();
+
+        arrayAdapterOrden = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataForTab1);
+        listHistorial1.setAdapter(arrayAdapterOrden);
+
+        arrayAdapterLectura = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataForTab2);
+        listHistorial2.setAdapter(arrayAdapterLectura);
+
+        listHistorial1.setVisibility(View.VISIBLE);
+        listHistorial2.setVisibility(View.GONE);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 animatedFab(tab.getPosition());
-
-
+                positionTab = tab.getPosition();
+//                switch (positionTab){
+//                    case 0:
+//                        listHistorial1.setVisibility(View.VISIBLE);
+//                        listHistorial2.setVisibility(View.GONE);
+//                        break;
+//                    case 1:
+//                        listHistorial1.setVisibility(View.GONE);
+//                        listHistorial2.setVisibility(View.VISIBLE);
+//                        break;
+//                }
+                if (tab.getPosition() == 0) {
+                    listHistorial1.setVisibility(View.VISIBLE);
+                    listHistorial2.setVisibility(View.GONE);
+                } else {
+                    listHistorial1.setVisibility(View.GONE);
+                    listHistorial2.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -62,25 +109,19 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
-
-
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.menu:
                         FirebaseAuth.getInstance().signOut();
-                        Snackbar.make(startLayout, "Usuario creado con exito", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(startLayout, "Sesion cerrada", Snackbar.LENGTH_LONG).show();
                         goLogin();
 
                 }
                 return false;
             }
         });
-
-
-
-
         btn_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +140,27 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
     }
+
+    private ArrayList<String> getDataForTab2() {
+        listOrden = new ArrayList<String>();
+//        Intent intent = getIntent();
+//        String datoCliente = intent.getStringExtra("cliente");
+        listOrden.add("Deftones");
+//        arrayAdapterLectura.notifyDataSetChanged();
+        return (ArrayList<String>) listOrden;
+    }
+
+    private ArrayList<String> getDataForTab1() {
+        ArrayList<String> listLectura = new ArrayList<String>();
+        listLectura.add("Polyphia");
+        return listLectura;
+    }
+
 
     private void goLogin() {
         Intent intent = new Intent(StartActivity.this, LoginActivity.class);

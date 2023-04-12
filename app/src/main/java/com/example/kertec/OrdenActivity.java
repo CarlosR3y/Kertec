@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 
 public class OrdenActivity extends AppCompatActivity {
 
@@ -118,7 +120,7 @@ public class OrdenActivity extends AppCompatActivity {
         }
     }
 
-    private void generarPDF() throws IOException, DocumentException {
+    public void generarPDF() throws IOException, DocumentException {
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         InputStream inputStream = getAssets().open("plantilla.pdf");
         PdfReader reader = new PdfReader(inputStream);
@@ -128,6 +130,7 @@ public class OrdenActivity extends AppCompatActivity {
         PdfContentByte content = stamper.getUnderContent(1);
         //Variables
         String Cliente = fieldCliente.getText().toString();
+        DataHolder.setEditTextValue(Cliente);
         String Fecha = fieldFecha.getText().toString();
         String Departamento = fieldDepartamento.getText().toString();
         String Direccion =fieldDireccion.getText().toString();
@@ -170,6 +173,13 @@ public class OrdenActivity extends AppCompatActivity {
 
         Snackbar.make(scrollView, "Orden Generada", Snackbar.LENGTH_LONG).show();
 
+
+//        String datoCliente = fieldCliente.getText().toString();
+//        Intent intent = new Intent(this, StartActivity.class);
+//        intent.putExtra("cliente", datoCliente);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//        startActivity(intent);
 
     }
 }

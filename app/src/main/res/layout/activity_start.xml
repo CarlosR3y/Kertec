@@ -47,6 +47,24 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ListView
+        android:id="@+id/listHistorial1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+    </ListView>
+
+    <ListView
+        android:id="@+id/listHistorial2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+    </ListView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_fab"
         android:layout_width="wrap_content"
