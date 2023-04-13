@@ -49,6 +49,7 @@
 
     // Errores
     <string name="error_email">Escribe un correo valido</string>
+    <string name="error_orden">Debes de poner un nombre</string>
     <string name="error_password">Escrribe una contraseña mayor a 6 digitos</string>
     <string name="error_name">Escribe un nombre valido</string>
     <string name="menu">Cerrar sesion</string>

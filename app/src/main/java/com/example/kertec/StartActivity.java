@@ -38,18 +38,17 @@ public class StartActivity extends AppCompatActivity {
     ListView listHistorial1;
     ListView listHistorial2;
 
-    List listOrden;
-    List listLectura;
+//    List listOrden;
+//    List listLectura;
 
     int[] colorIntArray = {R.color.md_theme_light_primaryContainer, R.color.md_theme_light_primaryContainer};
     int[] iconIntArray = {R.drawable.ic_add,R.drawable.ic_print};
 
     int positionTab;
 
-    ArrayAdapter<String> arrayAdapterOrden;
-    ArrayAdapter<String> arrayAdapterLectura;
+//    ArrayAdapter<String> arrayAdapterOrden;
+//    ArrayAdapter<String> arrayAdapterLectura;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +61,26 @@ public class StartActivity extends AppCompatActivity {
         listHistorial1 = findViewById(R.id.listHistorial1);
         listHistorial2 = findViewById(R.id.listHistorial2);
 
-        ArrayList<String> dataForTab1 = getDataForTab1();
-        ArrayList<String> dataForTab2 = getDataForTab2();
+        ArrayList<String> listaOrden = new ArrayList<>();
+        ArrayAdapter<String> arrayAdapterOrden = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listaOrden);
 
-        arrayAdapterOrden = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataForTab1);
-        listHistorial1.setAdapter(arrayAdapterOrden);
+        Bundle sms = getIntent().getExtras();
+        if(sms != null){
+            String dato = sms.getString("orden");
+            listaOrden.add("Orden Dicipa");
+            listHistorial1.setAdapter(arrayAdapterOrden);
+            arrayAdapterOrden.notifyDataSetChanged();
 
-        arrayAdapterLectura = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataForTab2);
-        listHistorial2.setAdapter(arrayAdapterLectura);
+        }
+        ArrayList<String> listaLectura = new ArrayList<>();
+        ArrayAdapter<String> arrayAdapterLectura = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listaLectura);
+        if(sms != null){
+            String dato = sms.getString("lectura");
+            listaLectura.add("Lectura David Rosales");
+            listHistorial2.setAdapter(arrayAdapterLectura);
+            arrayAdapterLectura.notifyDataSetChanged();
+
+        }
 
         listHistorial1.setVisibility(View.VISIBLE);
         listHistorial2.setVisibility(View.GONE);
@@ -146,20 +157,20 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> getDataForTab2() {
-        listOrden = new ArrayList<String>();
-//        Intent intent = getIntent();
-//        String datoCliente = intent.getStringExtra("cliente");
-        listOrden.add("Deftones");
-//        arrayAdapterLectura.notifyDataSetChanged();
-        return (ArrayList<String>) listOrden;
-    }
+//    private ArrayList<String> getDataForTab2() {
+//        listOrden = new ArrayList<String>();
+////        Intent intent = getIntent();
+////        String datoCliente = intent.getStringExtra("cliente");
+//        listOrden.add("Deftones");
+////        arrayAdapterLectura.notifyDataSetChanged();
+//        return (ArrayList<String>) listOrden;
+//    }
 
-    private ArrayList<String> getDataForTab1() {
-        ArrayList<String> listLectura = new ArrayList<String>();
-        listLectura.add("Polyphia");
-        return listLectura;
-    }
+//    private ArrayList<String> getDataForTab1() {
+//        ArrayList<String> listLectura = new ArrayList<String>();
+//        listLectura.add("Polyphia");
+//        return listLectura;
+//    }
 
 
     private void goLogin() {

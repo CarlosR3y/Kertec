@@ -9,12 +9,16 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.itextpdf.text.DocumentException;
@@ -54,6 +58,7 @@ public class OrdenActivity extends AppCompatActivity {
 
     String nombreArchivo;
 
+    AwesomeValidation awesomeValidation;
 
     private static final int PERMISSION_REQUEST_CODE = 1;
 
@@ -79,6 +84,9 @@ public class OrdenActivity extends AppCompatActivity {
         fieldServicio = findViewById(R.id.fieldServicio);
         fieldTarbajo = findViewById(R.id.fieldTrabajo);
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation.addValidation(this, R.id.fieldCliente, Patterns.EMAIL_ADDRESS, R.string.error_orden);
+
         if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -89,9 +97,26 @@ public class OrdenActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     try {
-                        generarPDF();
+                        String text1 = fieldCliente.getText().toString();
+                        String text2 = fieldTarbajo.getText().toString();
+                        String text3 = fieldServicio.getText().toString();
+                        if(TextUtils.isEmpty(text1)){
+                            fieldCliente.setError("Este campo es obligatorio");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(text3)){
+                            fieldTarbajo.setError("Este campo es obligatorio");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(text2)){
+                            fieldServicio.setError("Este campo es obligatorio");
+                            return;
+                        }
+                        else {
+                            generarPDF();
+                        }
                     }catch (IOException | DocumentException e){
-
+                        Snackbar.make(scrollView, "Revise los campos escritos", Snackbar.LENGTH_LONG).show();
                     }
 
                 }
@@ -111,9 +136,33 @@ public class OrdenActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            generarPDF();
-                        }catch (IOException | DocumentException e){
+                            String text1 = fieldCliente.getText().toString();
+                            String text2 = fieldTarbajo.getText().toString();
+                            String text3 = fieldServicio.getText().toString();
 
+                            if(TextUtils.isEmpty(text1)){
+                                fieldCliente.setError("Este campo es obligatorio");
+                                return;
+                            }
+                            if (TextUtils.isEmpty(text2)){
+                                fieldTarbajo.setError("Este campo es obligatorio");
+                                return;
+                            }
+                            if (TextUtils.isEmpty(text3)){
+                                fieldServicio.setError("Este campo es obligatorio");
+                                return;
+                            }
+                            else {
+                                generarPDF();
+
+                                String datoCliente = fieldCliente.getText().toString();
+
+                                Intent intent = new Intent(v.getContext(), StartActivity.class);
+                                intent.putExtra("orden", datoCliente);
+                                startActivity(intent);
+                            }
+                        }catch (IOException | DocumentException e){
+                            Snackbar.make(scrollView, "Revise los campos escritos", Snackbar.LENGTH_LONG).show();
                         }
 
                     }
@@ -136,6 +185,7 @@ public class OrdenActivity extends AppCompatActivity {
         String currentDateTime = dateFormat.format(date);
 
         nombreArchivo = fieldCliente.getText().toString();
+
         File file = new File(pdfPath, nombreArchivo +" "+currentDateTime +".pdf");
         OutputStream outputStream = new FileOutputStream(file);
         PdfStamper stamper = new PdfStamper(reader, outputStream);
@@ -184,14 +234,6 @@ public class OrdenActivity extends AppCompatActivity {
         reader.close();
 
         Snackbar.make(scrollView, "Orden Generada", Snackbar.LENGTH_LONG).show();
-
-
-//        String datoCliente = fieldCliente.getText().toString();
-//        Intent intent = new Intent(this, StartActivity.class);
-//        intent.putExtra("cliente", datoCliente);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//        startActivity(intent);
 
     }
 }
