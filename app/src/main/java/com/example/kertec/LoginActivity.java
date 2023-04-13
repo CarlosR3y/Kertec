@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.os.Environment;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -34,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnSesion;
     Button btnPassword;
+
+    Button btnPyp;
 
     AwesomeValidation awesomeValidation;
     FirebaseAuth firebaseAuth;
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         fieldEmail = findViewById(R.id.fieldEmail);
         fieldPassword = findViewById(R.id.fieldPassword);
         loginLayout = findViewById(R.id.loginLayout);
+        btnPyp = findViewById(R.id.btnPyp);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -117,6 +122,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, ResetActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        btnPyp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(LoginActivity.this);
+                dialog.setContentView(R.layout.dialog_webview);
+
+                WebView webView = dialog.findViewById(R.id.webview);
+                webView.loadUrl("file:///android_asset/politicas.html");
+                Button btnClose = dialog.findViewById(R.id.btn_close);
+
+                btnClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
     }

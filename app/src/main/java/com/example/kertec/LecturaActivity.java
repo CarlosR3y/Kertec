@@ -39,7 +39,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class LecturaActivity extends AppCompatActivity {
@@ -62,6 +65,8 @@ public class LecturaActivity extends AppCompatActivity {
     String dataSerie;
     String dataMarca;
     String dataModelo;
+
+    String nombreLectura;
 
     DatabaseReference mDatabase;
 
@@ -120,7 +125,16 @@ public class LecturaActivity extends AppCompatActivity {
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         InputStream inputStream = getAssets().open("LecturaPlantilla.pdf");
         PdfReader reader = new PdfReader(inputStream);
-        File file = new File(pdfPath, "Lectura.pdf");
+
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String currentDateTime = dateFormat.format(date);
+
+
+        nombreLectura = fieldLecturaCliente.getText().toString();
+
+        File file = new File(pdfPath, nombreLectura+ " " + currentDateTime +".pdf");
         OutputStream outputStream = new FileOutputStream(file);
         PdfStamper stamper = new PdfStamper(reader, outputStream);
         PdfContentByte content = stamper.getUnderContent(1);

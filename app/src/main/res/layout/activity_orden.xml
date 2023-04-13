@@ -36,7 +36,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="0dp"
                 android:hint="@string/hintCliente"
@@ -133,11 +133,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="120dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginRight="15dp"
                 android:hint="@string/hintTelefono"
                 app:endIconMode="clear_text">
 
@@ -174,12 +174,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="160dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="1dp"
-                android:hint="@string/hintEquipo"
+                android:layout_marginRight="15dp"
+                android:hint="@string/hintMarca"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -203,7 +203,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="1dp"
-                android:hint="@string/hintEquipo"
+                android:hint="@string/hintModelo"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -215,12 +215,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="160dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="1dp"
-                android:hint="@string/hintEquipo"
+                android:layout_marginRight="15dp"
+                android:hint="@string/hintSerie"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -246,14 +246,21 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:hint="@string/hintDepartamento"
+                android:hint="@string/hintReportado"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fieldServicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text|textMultiLine" />
+                    android:inputType="text|textMultiLine"
+                    android:gravity="top"
+                    android:lines="2"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollHorizontally="false"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -263,14 +270,21 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:hint="@string/hintDepartamento"
+                android:hint="@string/hintTrabajo"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fieldTrabajo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text|textMultiLine" />
+                    android:inputType="text|textMultiLine"
+                    android:gravity="top"
+                    android:lines="2"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollHorizontally="false"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -278,10 +292,15 @@
                 android:id="@+id/btnFinalizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:text="Finalizar"
-                android:textColor="@color/seed"
+                android:textColor="@color/md_theme_light_onPrimary"
                 android:textSize="20sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="@color/seed"
+
                 >
             </com.google.android.material.button.MaterialButton>
 

@@ -30,6 +30,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class OrdenActivity extends AppCompatActivity {
@@ -48,6 +51,8 @@ public class OrdenActivity extends AppCompatActivity {
     TextInputEditText fieldSerie;
     TextInputEditText fieldServicio;
     TextInputEditText fieldTarbajo;
+
+    String nombreArchivo;
 
 
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -124,7 +129,14 @@ public class OrdenActivity extends AppCompatActivity {
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         InputStream inputStream = getAssets().open("plantilla.pdf");
         PdfReader reader = new PdfReader(inputStream);
-        File file = new File(pdfPath, "Ejemplo.pdf");
+
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String currentDateTime = dateFormat.format(date);
+
+        nombreArchivo = fieldCliente.getText().toString();
+        File file = new File(pdfPath, nombreArchivo +" "+currentDateTime +".pdf");
         OutputStream outputStream = new FileOutputStream(file);
         PdfStamper stamper = new PdfStamper(reader, outputStream);
         PdfContentByte content = stamper.getUnderContent(1);
